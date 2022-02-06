@@ -18,13 +18,15 @@ def get_data(keyword: str) -> list:
         },
     ]
     '''
-    result = []
     with open(f'{p}/data.json', 'r') as f:
         data = json.load(f)
-
-    for i in data:
-        if keyword in i['title']:
-            result.append(i)
+    id_or_title = 'title'
+    if len(keyword) == 8 and keyword.isdigit():
+        # if keyword is id, search by id
+        id_or_title = 'id'
+        result = [i for i in data if keyword in i[id_or_title]]
+    else:
+        result = [i for i in data if keyword in i[id_or_title]]
 
     return result
 
