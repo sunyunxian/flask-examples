@@ -4,14 +4,14 @@ from app.data import tools
 from app.forms.movies import SearchForm
 
 
-@web.get('/search/')
+@web.get('/search')
 def search():
 
     form = SearchForm(request.args)
     if form.validate():
         keyword = form.keyword.data
         print('Validate right')
-        data = tools.get_data(keyword)
+        data = tools.MoviesData(keyword).get_data()
         return jsonify(data)
     else:
         print('Validate wrong')
