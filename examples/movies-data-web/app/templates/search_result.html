@@ -16,11 +16,11 @@
         </div>
     </div>
     <hr>
-    {% for book in books.books %}
+    {% for book in books.movies %}
         <div class="row col-padding">
-            <a href="{{ url_for('web.book_detail', isbn=book.isbn) }}" class="">
+            <a href="{{ url_for('web.movie_detail', id=book.mid) }}" class="">
                 <div class="col-md-2">
-                    <img class="book-img-small shadow" src="{{ book.image }}">
+                    <img class="book-img-small shadow" src="{{ book.poster }}">
                 </div>
                 <div class="col-md-7 flex-vertical description-font">
                     <span class="title">{{ book.title }}</span>

@@ -1,18 +1,22 @@
-from flask import jsonify, request
+from flask import jsonify, request, render_template, flash
 from app.web import web
 from app.data import tools
 from app.forms.movies import SearchForm
 
 
-@web.get('/search')
+@web.get('/book/search')
 def search():
-
+    data = {}
     form = SearchForm(request.args)
     if form.validate():
         keyword = form.keyword.data
-        print('Validate right')
         data = tools.MoviesData(keyword).get_data()
-        return jsonify(data)
+        print(data)
     else:
-        print('Validate wrong')
-        return jsonify({'msg': 'Validate wrong'})
+        flash('Keyword is not validate, please input right keword')
+    return render_template('search_result.html', books=data)
+
+
+@web.get('/book/<id>/detail')
+def movie_detail(id):
+    pass

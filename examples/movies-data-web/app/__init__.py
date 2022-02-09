@@ -5,7 +5,7 @@ from app.models.movies import db
 
 
 def create_app():
-    app = Flask('__name__')
+    app = Flask('__name__', template_folder='app/templates', static_folder='app/static')
     # register blueprit
     register_blueprint(app)
     # load config, later will use env load
