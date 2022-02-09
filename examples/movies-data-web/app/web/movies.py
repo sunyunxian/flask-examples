@@ -11,12 +11,14 @@ def search():
     if form.validate():
         keyword = form.keyword.data
         data = tools.MoviesData(keyword).get_data()
-        print(data)
     else:
         flash('Keyword is not validate, please input right keword')
     return render_template('search_result.html', books=data)
 
 
-@web.get('/book/<id>/detail')
-def movie_detail(id):
-    pass
+@web.get('/book/<mid>/detail')
+def movie_detail(mid):
+    data = tools.MoviesData(mid).get_data()
+    return render_template(
+        'book_detail.html', book=data['movies'][0], wishes=[], gifts=[]
+    )

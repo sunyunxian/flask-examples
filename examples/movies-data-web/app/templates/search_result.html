@@ -18,14 +18,14 @@
     <hr>
     {% for book in books.movies %}
         <div class="row col-padding">
-            <a href="{{ url_for('web.movie_detail', id=book.mid) }}" class="">
+            <a href="{{ url_for('web.movie_detail', mid=book.mid) }}" class="">
                 <div class="col-md-2">
                     <img class="book-img-small shadow" src="{{ book.poster }}">
                 </div>
                 <div class="col-md-7 flex-vertical description-font">
                     <span class="title">{{ book.title }}</span>
-{#                    <span>{{ [book.author | d(''), book.publisher | d('', true) , '￥' + book.price | d('')] | join(' / ') }}</span>#}
-                    <span>{{book.intro}}</span>
+                    <span>{{ [book.original_title | d(''), book.year | d('', true) , book.is_tv | d('')] | join(' / ') }}</span>
+                    {# <span>{{book.intro}}</span> #}
                     <span class="summary">{{ book.summary | default('', true) }}</span>
                 </div>
             </a>
